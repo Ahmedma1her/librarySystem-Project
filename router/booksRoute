@@ -1,0 +1,7 @@
+const express=require("express")
+const router=express.Router();
+const {createBook,getBook}=require("../controller/bookscontroller")
+router.post("/library/books",createBook)
+router.get("/library/books",getBook)
+
+module.exports=router

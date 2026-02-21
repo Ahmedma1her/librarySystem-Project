@@ -24,68 +24,12 @@ db_connect()
 
 
 
-app.post('/api/library/authors',async(req,res)=>{
-    try {
-        
-        const author = await Author.create(req.body);
-            res.json({
-                success:true,
-                message:"author added successfully",
-                data:author,
-            })
-        console.log(req.body);
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({
-            success: false,
-            message:error.message
-        })
-    }
-}
-)
 
 
-app.post('/api/library/books',async(req,res)=>{
-    try {
-        
-        
-        const book=await Book.create(req.body)
-        res.status(200).json({
-            success: true,
-            data:book,
-            message:"book added"
-        })
-    } catch (error) {
-        
-        
-        res.status(400).json({
-            success: false,
-            
-            message:error.message
-    })
-}})
-
-
-
-app.get('/api/library/books', async(req,res)=>{
-   try {
-    const books=await Book.find()
-    res.status(200).json({
-        success: true,
-        data: books,
-        message:"all books data retrieved"
-    })
-   } catch (error) {
-    res.status(400).json({
-    success: false,
-            
-    message:error.message
-   }
-)}
-})
-
-
-
+const authrouter=require("./router/authorRoute")
+app.use(authrouter)
+const bookrouter=require("./router/booksRoute")
+app.use(bookrouter) 
 
 
 
